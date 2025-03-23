@@ -16,6 +16,7 @@ for %%F in (%files%) do (
     echo Compiling and linking: %%~F.asm
     rgbasm.exe -o %%~F.o %%~F.asm
     rgblink -o %%~F.gb %%~F.o
+    rgbfix -v %%~F.gb
 )
 
 endlocal
