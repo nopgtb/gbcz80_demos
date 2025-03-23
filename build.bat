@@ -16,6 +16,7 @@ for %%F in (%files%) do (
     echo Compiling and linking: %%~F.asm
     rgbasm.exe -o %%~F.o %%~F.asm
     rgblink -o %%~F.gb %%~F.o
+    REM RGBFIX adds nintendo logo (0x104-0x133) and checks the metadata (0x134-..)
     rgbfix -v %%~F.gb
 )
 
