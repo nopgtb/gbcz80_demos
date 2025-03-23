@@ -14,7 +14,7 @@ SECTION "Nintendo Logo", ROM0[$104]
 ; --- GAME TITLE & HEADER METADATA ---
 SECTION "Header Metadata", ROM0[$134]
 
-    db "add_demo.gb", 0, 0, 0, 0, 0 ; Game title (11 characters max)
+    db "sub_demo.gb", 0, 0, 0, 0, 0 ; Game title (11 characters max)
     db $01   ; Game Boy Color compatibility (set to $00 for DMG)
     db $00   ; License code (old)
     db $00   ; Cartridge type (ROM only)
