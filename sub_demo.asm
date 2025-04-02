@@ -14,17 +14,18 @@ SECTION "Nintendo Logo", ROM0[$104]
 ; --- GAME TITLE & HEADER METADATA ---
 SECTION "Header Metadata", ROM0[$134]
 
-    db "sub_demo.gb", 0, 0, 0, 0, 0 ; Game title (11 characters max)
-    db $01   ; Game Boy Color compatibility (set to $00 for DMG)
-    db $00   ; License code (old)
-    db $00   ; Cartridge type (ROM only)
-    db $00   ; ROM size (32 KB)
-    db $00   ; RAM size (none)
-    db $00   ; Destination code (Japan)
-    db $33   ; Licensee code (new)
-    db $01   ; Version number
-    db $00   ; Header checksum (will be fixed by rgbfix)
-    db $00, $00 ; Global checksum (also fixed by rgbfix)
+    db "sub_demo.gb", 0, 0, 0, 0;Game title (15 characters max, unused bytes null padded)
+    db $80                 ;Game Boy Color compatibility (0x80 for GBC, 0x00 for classic)
+    db $00, $01            ;License code (new), two bytes treated as ascii, and put together for the actual value! https://www.zophar.net/fileuploads/2/10597teazh/gbrom.txt for common values
+    db $00                 ;SGB features, (0x03 for SGB features, 0x00 for not)
+    db $00                 ;Cartridge type. https://www.zophar.net/fileuploads/2/10597teazh/gbrom.txt for common values
+    db $01                 ;ROM size (32KB * 2^VALUE)
+    db $01                 ;Save RAM size (2KB * 2^VALUE)
+    db $00                 ;Country code (0x00 is japan, 0x01 is other)
+    db $01                 ;Licensee (old). https://www.zophar.net/fileuploads/2/10597teazh/gbrom.txt for common values
+    db $02                 ;mask ROM version number
+    db $00                 ;Header checksum (will be fixed by rgbfix)
+    db $00, $00            ;Global checksum (also fixed by rgbfix)
 
 SECTION "Main Code", ROM0[$150]
 ;Simple 6-4 demo. Results in register A having 2.
